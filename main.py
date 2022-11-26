@@ -36,4 +36,11 @@ async def on_join(member):
     dmchannel = await member.create_dm()
     await dmchannel.send(f"GREETINGS FROM {guildname}")
     print("NEW USER")
+
+
+
+
+#====================#
+#        RUN         #
+#====================#
 bot.run(token)
