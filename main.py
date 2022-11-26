@@ -29,6 +29,12 @@ async def on_message(msg):
     if msg.content == "hello":
         await msg.channel.send("FUCK OFF " + username)
 
+async def darkspook(msg):
+    if msg.author == bot.user:
+        return
+    if msg.content == "darkspook":
+        await msg.channel.send("JEW")
+
 @bot.event #sends a greeting cart for the player NOT WORKING
 async def on_join(member):
     guild = member.guild
