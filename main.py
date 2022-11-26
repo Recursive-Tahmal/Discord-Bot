@@ -1,4 +1,4 @@
-import discord  # libary that calls discord
+import discord  # library that calls discord
 from json import loads
 from pathlib import Path
 #===========================================================#
@@ -44,3 +44,5 @@ async def on_join(member):
 #        RUN         #
 #====================#
 bot.run(token)
+
+#test123Hello
