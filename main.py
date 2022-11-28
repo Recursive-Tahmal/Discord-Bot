@@ -33,8 +33,8 @@ async def on_message(msg):
 async def on_message(msg):
     if msg.author == bot.user:
         return
-    if msg.content == "darkspook":
-        await msg.channel.send("Ratem")
+    if msg.content == 'darkspook':
+        await msg.channel.send('Ratem')
 
 
 @bot.event  # sends a greeting cart for the player NOT WORKING

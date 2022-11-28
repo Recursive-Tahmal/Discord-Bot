@@ -15,6 +15,10 @@ bot = lightbulb.BotApp(
 
 # NO TOUCHY
 
+@bot.listen(hikari.StartedEvent)
+async def bot_start(event):
+    print ('IM ALIVE')
+
 @bot.listen(hikari.GuildMessageCreateEvent)
 async def print_message(event):
     print(event.content)
