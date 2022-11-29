@@ -19,9 +19,11 @@ bot = lightbulb.BotApp(
 async def bot_start(event):
     print ('IM ALIVE')
 
-@bot.listen(hikari.GuildMessageCreateEvent)
-async def print_message(event):
-    print(event.content)
+@bot.command
+@lightbulb.command('ping', 'TELLS YOU THE NAME OF A XINESE EMPEROR')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def ping (ctx):
+    await ctx.respond('XING XONG')
 
 
 bot.run()

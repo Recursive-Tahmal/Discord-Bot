@@ -27,7 +27,7 @@ async def on_message(msg):
     if msg.author == bot.user:
         return
     if msg.content == "hello":
-        await msg.channel.send("FUCK OFF " + username)
+        await msg.channel.send(f"FUCK OFF " + username)
 
 @bot.event
 async def on_message(msg):
