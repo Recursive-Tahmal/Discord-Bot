@@ -46,13 +46,22 @@ async def my_group (ctx):
 @lightbulb.implements(lightbulb.SlashSubCommand)
 async def subcommand(ctx):
     await ctx.respond('i am a sub command')
-
+#child 2
 @my_group.child
 @lightbulb.command('subcommand2', 'this is a subcommand2')
 @lightbulb.implements(lightbulb.SlashSubCommand)
 async def subcommand(ctx):
     await ctx.respond('i am a sub command2')
 
+
+#MATH.... not drugs
+@bot.command
+@lightbulb.option('num1', 'the First number', type=int)
+@lightbulb.option('num2', 'the second number', type=int)
+@lightbulb.command('add', 'MAKES MATH FOR YOU FUCKING KUNT')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def add (ctx):
+    await ctx.respond(ctx.options.num1 + ctx.options.num2)
 
 
 bot.run()
