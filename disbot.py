@@ -32,6 +32,27 @@ async def ping (ctx):
 async def help (ctx):
     await ctx.respond('PING = Shows you pong')
 
+#GROUP AND CHILDS
+@bot.command
+@lightbulb.command('group', 'groupo test')
+@lightbulb.implements(lightbulb.SlashCommandGroup)
+async def my_group (ctx):
+    pass
+
+
+#child 1
+@my_group.child
+@lightbulb.command('subcommand', 'this is a subcommand')
+@lightbulb.implements(lightbulb.SlashSubCommand)
+async def subcommand(ctx):
+    await ctx.respond('i am a sub command')
+
+@my_group.child
+@lightbulb.command('subcommand2', 'this is a subcommand2')
+@lightbulb.implements(lightbulb.SlashSubCommand)
+async def subcommand(ctx):
+    await ctx.respond('i am a sub command2')
+
 
 
 bot.run()
