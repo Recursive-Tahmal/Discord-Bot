@@ -31,6 +31,7 @@ async def ping (ctx):
 @lightbulb.implements(lightbulb.SlashCommand)
 async def help (ctx):
     await ctx.respond('PING = Shows you pong')
+    print('XING XONG')
 
 #GROUP AND CHILDS
 @bot.command
@@ -62,6 +63,6 @@ async def subcommand(ctx):
 @lightbulb.implements(lightbulb.SlashCommand)
 async def add (ctx):
     await ctx.respond(ctx.options.num1 + ctx.options.num2)
-
+    print('MATH')
 
 bot.run()
