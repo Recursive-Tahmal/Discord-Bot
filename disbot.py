@@ -30,7 +30,7 @@ async def ping (ctx):
 @lightbulb.command('help', 'Inform you what are the commands of the bot')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def help (ctx):
-    await ctx.respond('PING = Shows you pong')
+    await ctx.respond('PING = Shows you pong'/n )
     print('XING XONG')
 
 #GROUP AND CHILDS
