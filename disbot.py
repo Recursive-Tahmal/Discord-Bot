@@ -2,6 +2,7 @@
 import hikari
 from json import loads
 from pathlib import Path
+import pyjokes
 import lightbulb
 
 # DEF CON 01
@@ -39,7 +40,12 @@ async def help (ctx):
 @lightbulb.implements(lightbulb.SlashCommandGroup)
 async def my_group (ctx):
     pass
-
+#jokes NOT FUNNY!!!!
+@bot.command
+@lightbulb.command('joke', 'Random Joke of the mind')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def joke (ctx):
+    await ctx.respond(pyjokes.get_joke())
 
 #child 1
 @my_group.child
