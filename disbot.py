@@ -1,4 +1,5 @@
 # MUT
+import time
 import hikari
 from json import loads
 from pathlib import Path
@@ -34,7 +35,7 @@ async def ping (ctx):
 @lightbulb.command('help', 'Inform you what are the commands of the bot')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def help (ctx):
-    await ctx.respond('PING = Shows you pong')
+    await ctx.respond(HELP_MESSAGE)
     print('XING XONG')
 
 #jokes NOT FUNNY!!!!
@@ -64,23 +65,26 @@ async def subcommand(ctx):
 async def subcommand(ctx):
     await ctx.respond('i am a sub command2')
 
-#wikipedia NOT WORKING GOTTA SOLVE
+#wikipedia1 search generic
 @bot.command
+@lightbulb.option('long', 'How long should the text be?', type=int)
+@lightbulb.option('text', 'the text to search')
 @lightbulb.command('search', 'Your search question')
 @lightbulb.implements(lightbulb.SlashCommand)
-async def wiki (ctx):
-    resposta = ctx.options.search
-    await ctx.respond(wikipedia.summary(resposta))
-
+async def wiki (ctx: lightbulb.Context):
+    resposta = ctx.options.text
+    pesado = ctx.options.long
+    await ctx.respond(wikipedia.summary(resposta, pesado))
+#random WIKI NOT WORKING
 @bot.command
-@lightbulb.command('calculate', 'Calculate your transformation')
+@lightbulb.command('randomfact', 'Gets a random fact fro the web, not responsable from bad search!!!')
 @lightbulb.implements(lightbulb.SlashCommand)
-async def gcalculate (ctx):
-
-
-
-
-
+async def ranwiki (ctx: lightbulb.Context):
+    randomwiki = wikipedia.random(1)
+    print(randomwiki)
+    resposta = wikipedia.summary(randomwiki,6)
+    print(resposta)
+    await ctx.respond(randomwiki)
 
 #MATH.... not drugs
 @bot.command
@@ -91,5 +95,17 @@ async def gcalculate (ctx):
 async def add (ctx):
     await ctx.respond(ctx.options.num1 + ctx.options.num2)
     print('MATH')
+
+
+
+############################################################################
+HELP_MESSAGE = """
+Commands Available:
+`add` - makes a math addition
+`search` - search the web for the context
+`joke` - does not make you laught
+"""
+
+
 
 bot.run()
