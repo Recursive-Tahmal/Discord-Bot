@@ -3,7 +3,10 @@ import hikari
 from json import loads
 from pathlib import Path
 import pyjokes
+import wikipedia
 import lightbulb
+from googlesearch.googlesearch import GoogleSearch
+
 
 # DEF CON 01
 
@@ -34,18 +37,19 @@ async def help (ctx):
     await ctx.respond('PING = Shows you pong')
     print('XING XONG')
 
-#GROUP AND CHILDS
-@bot.command
-@lightbulb.command('group', 'groupo test')
-@lightbulb.implements(lightbulb.SlashCommandGroup)
-async def my_group (ctx):
-    pass
 #jokes NOT FUNNY!!!!
 @bot.command
 @lightbulb.command('joke', 'Random Joke of the mind')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def joke (ctx):
     await ctx.respond(pyjokes.get_joke())
+
+#GROUP AND CHILDS
+@bot.command
+@lightbulb.command('group', 'groupo test')
+@lightbulb.implements(lightbulb.SlashCommandGroup)
+async def my_group (ctx):
+    pass
 
 #child 1
 @my_group.child
@@ -59,6 +63,23 @@ async def subcommand(ctx):
 @lightbulb.implements(lightbulb.SlashSubCommand)
 async def subcommand(ctx):
     await ctx.respond('i am a sub command2')
+
+#wikipedia NOT WORKING GOTTA SOLVE
+@bot.command
+@lightbulb.command('search', 'Your search question')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def wiki (ctx):
+    resposta = ctx.options.search
+    await ctx.respond(wikipedia.summary(resposta))
+
+@bot.command
+@lightbulb.command('calculate', 'Calculate your transformation')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def gcalculate (ctx):
+
+
+
+
 
 
 #MATH.... not drugs
