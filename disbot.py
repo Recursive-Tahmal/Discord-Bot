@@ -6,7 +6,7 @@ from pathlib import Path
 import pyjokes
 import wikipedia
 import lightbulb
-
+import jaconv
 
 
 # DEF CON 01
@@ -26,17 +26,18 @@ async def bot_start(event):
     print ('IM ALIVE')
 
 @bot.command
-@lightbulb.command('ping', 'TELLS YOU THE NAME OF A XINESE EMPEROR')
+@lightbulb.command('help', 'Help fot the needed')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def ping (ctx):
-    await ctx.respond('XING XONG')
+    await ctx.respond(HELP_MESSAGE)
 
 @bot.command
-@lightbulb.command('help', 'Inform you what are the commands of the bot')
+@lightbulb.option('text', 'The Text you want to convert')
+@lightbulb.command('japan', 'Transform your text to Katakana')
 @lightbulb.implements(lightbulb.SlashCommand)
-async def help (ctx):
-    await ctx.respond(HELP_MESSAGE)
-    print('XING XONG')
+async def japan (ctx: lightbulb.Context):
+    texto = ctx.options.text
+    await ctx.respond(jaconv.alphabet2kata(texto))
 
 #jokes NOT FUNNY!!!!
 @bot.command
