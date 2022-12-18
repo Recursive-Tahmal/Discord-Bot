@@ -1,94 +1,140 @@
-from tokenize import Double
+# MUT
+import time
 import hikari
-import lightbulb
-import requests
-import datetime
 from json import loads
 from pathlib import Path
+import pyjokes
+import wikipedia
+import lightbulb
+import jaconv
+from biblehub import search as b_search
 
-#python -m venv env
+# DEF CON 01
 
-#orders matter for dicorators
-
-#bot token
+# NO TOUCHY
 config = loads(Path("config.json").read_text())
 bot = lightbulb.BotApp(
-    token=config["token"], 
-    )
-
-@bot.listen(hikari.GuildMessageCreateEvent) #listens and prints on the consule what's being typed
-async def print_message(event):
-    print(event.content)
+    token=config["token"],
+    default_enabled_guilds=(1045906948341633115)
+)
 
 
-@bot.listen(hikari.StartedEvent) #consule types bot has started
-async def bot_started(event):
-    print("Bot has started!")
+# NO TOUCHY
 
+@bot.listen(hikari.StartedEvent)
+async def bot_start(event):
+    print ('IM ALIVE')
 
-@bot.command 
-@lightbulb.command("ping","Says pong!")
-@lightbulb.implements(lightbulb.SlashCommand) 
-async def ping(ctx): #say ping and respond to pong
-    await ctx.respond("Pong!")
+@bot.command
+@lightbulb.command('help', 'Help fot the needed')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def ping (ctx):
+    await ctx.respond(HELP_MESSAGE)
 
+@bot.command
+@lightbulb.option('text', 'The Text you want to convert')
+@lightbulb.command('japan', 'Transform your text to Katakana')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def japan (ctx: lightbulb.Context):
+    texto = ctx.options.text
+    await ctx.respond(jaconv.alphabet2kata(texto))
 
-#grouping commands
-@bot.command 
-@lightbulb.command("group", "This is a group")
+#jokes NOT FUNNY!!!!
+@bot.command
+@lightbulb.command('joke', 'Random Programmer Joke of the mind')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def joke (ctx):
+    await ctx.respond(pyjokes.get_joke())
+
+#GROUP AND CHILDS
+@bot.command
+@lightbulb.command('group', 'groupo test')
 @lightbulb.implements(lightbulb.SlashCommandGroup)
-async def my_group(ctx):
+async def my_group (ctx):
     pass
 
+#child 1
 @my_group.child
-@lightbulb.command("subcommand","This is a subcommand")
+@lightbulb.command('subcommand', 'this is a subcommand')
 @lightbulb.implements(lightbulb.SlashSubCommand)
 async def subcommand(ctx):
-    await ctx.respond("I am a subcommand!")
+    await ctx.respond('i am a sub command')
+#child 2
+@my_group.child
+@lightbulb.command('subcommand2', 'this is a subcommand2')
+@lightbulb.implements(lightbulb.SlashSubCommand)
+async def subcommand(ctx):
+    await ctx.respond('i am a sub command2')
 
-
-
-#this will add 2 numbers
+#wikipedia1 search generic
 @bot.command
-@lightbulb.option("num2", "The second number", type=float) # options
-@lightbulb.option("num1", "The first number", type=float) 
-@lightbulb.command("add" , "Add two numbers together")
+@lightbulb.option('long', 'How long should the text be?', type=int)
+@lightbulb.option('text', 'the text to search')
+@lightbulb.command('search', 'Your search question')
 @lightbulb.implements(lightbulb.SlashCommand)
-async def addnums(ctx):
-    await ctx.respond(ctx.options.num2 + ctx.options.num1)
+async def wiki (ctx: lightbulb.Context):
+    resposta = ctx.options.text
+    pesado = ctx.options.long
+    await ctx.respond(wikipedia.summary(resposta, pesado))
 
 
 
-#API test
+#random WIKI NOT WORKING
 @bot.command
-@lightbulb.command("joke", "tells a joke")
+@lightbulb.command('randomfact', 'Gets a random fact fro the web, not responsable from bad search!!!')
 @lightbulb.implements(lightbulb.SlashCommand)
-async def jokes(ctx):
-    response = requests.get("https://api.chucknorris.io/jokes/random")
-    fox = response.json()
-    await ctx.respond(fox["value"])
+async def ranwiki (ctx: lightbulb.Context):
+    randomwiki = wikipedia.random(1)
+    print(randomwiki)
+    resposta = wikipedia.summary(randomwiki,6)
+    print(resposta)
+    await ctx.respond(randomwiki)
 
-
-
+#MATH.... not drugs
 @bot.command
-@lightbulb.command("cat", "sends a cat picture")
+@lightbulb.option('num1', 'the First number', type=int)
+@lightbulb.option('num2', 'the second number', type=int)
+@lightbulb.command('add', 'MAKES MATH FOR YOU FUCKING KUNT')
 @lightbulb.implements(lightbulb.SlashCommand)
-async def cat(ctx):
-    response = requests.get("https://aws.random.cat/meow")
-    cat = response.json()["file"]
-    await ctx.respond(cat)
-
-
-# calculate how much left for the summer vacation
+async def add (ctx):
+    await ctx.respond(ctx.options.num1 + ctx.options.num2)
+    print('MATH')
+#subtract
 @bot.command
-@lightbulb.command("date", "tells how long till University start")
+@lightbulb.option('num1', 'the First number', type=int)
+@lightbulb.option('num2', 'the second number', type=int)
+@lightbulb.command('subtract', 'MAKES MATH FOR YOU FUCKING KUNT')
 @lightbulb.implements(lightbulb.SlashCommand)
-async def date(ctx):
-    present = datetime.datetime.now()
-    future = datetime.datetime(2022, 8, 29, 0, 0, 0)
-    await ctx.respond(future - present)
-    
+async def add (ctx):
+    await ctx.respond(ctx.options.num1 - ctx.options.num2)
+    print('MATH')
+#divide
+@bot.command
+@lightbulb.option('num1', 'the First number', type=int)
+@lightbulb.option('num2', 'the second number', type=int)
+@lightbulb.command('divide', 'MAKES MATH FOR YOU FUCKING KUNT')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def add (ctx):
+    await ctx.respond(ctx.options.num2 / ctx.options.num1)
+    print('Subtracted',ctx.options.num1 ,"/", ctx.options.num2 )
+#multiply
+@bot.command
+@lightbulb.option('num1', 'the First number', type=int)
+@lightbulb.option('num2', 'the second number', type=int)
+@lightbulb.command('multiply', 'MAKES MATH FOR YOU FUCKING KUNT')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def add (ctx):
+    await ctx.respond(ctx.options.num2 * ctx.options.num1)
+    print('Multipled',ctx.options.num1 ,"*", ctx.options.num2 )
 
-#TODO Make a command that tells people what's trending upon your friends -Example Minecraft server ip 192.168.1.1
+############################################################################
+HELP_MESSAGE = """
+Commands Available:
+`add` - makes a math addition
+`search` - search the web for the context
+`joke` - does not make you laught
+"""
+
+
 
 bot.run()
