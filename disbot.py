@@ -15,7 +15,7 @@ from biblehub import search as b_search
 config = loads(Path("config.json").read_text())
 bot = lightbulb.BotApp(
     token=config["token"],
-    default_enabled_guilds=(1045906948341633115)
+    #default_enabled_guilds=(1045906948341633115)
 )
 
 
@@ -26,7 +26,7 @@ async def bot_start(event):
     print ('IM ALIVE')
 
 @bot.command
-@lightbulb.command('help', 'Help fot the needed')
+@lightbulb.command('help', 'Help for the needed')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def ping (ctx):
     await ctx.respond(HELP_MESSAGE)
@@ -48,7 +48,7 @@ async def joke (ctx):
 
 #GROUP AND CHILDS
 @bot.command
-@lightbulb.command('group', 'groupo test')
+@lightbulb.command('group', 'group test')
 @lightbulb.implements(lightbulb.SlashCommandGroup)
 async def my_group (ctx):
     pass
@@ -81,7 +81,7 @@ async def wiki (ctx: lightbulb.Context):
 
 #random WIKI NOT WORKING
 @bot.command
-@lightbulb.command('randomfact', 'Gets a random fact fro the web, not responsable from bad search!!!')
+@lightbulb.command('randomfact', 'Gets a random fact fro the web, not responsible from bad search!!!')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def ranwiki (ctx: lightbulb.Context):
     randomwiki = wikipedia.random(1)
@@ -92,7 +92,7 @@ async def ranwiki (ctx: lightbulb.Context):
 
 #MATH.... not drugs
 @bot.command
-@lightbulb.option('num1', 'the First number', type=int)
+@lightbulb.option('num1', 'the first number', type=int)
 @lightbulb.option('num2', 'the second number', type=int)
 @lightbulb.command('add', 'MAKES MATH FOR YOU FUCKING KUNT')
 @lightbulb.implements(lightbulb.SlashCommand)
@@ -101,7 +101,7 @@ async def add (ctx):
     print('MATH')
 #subtract
 @bot.command
-@lightbulb.option('num1', 'the First number', type=int)
+@lightbulb.option('num1', 'the first number', type=int)
 @lightbulb.option('num2', 'the second number', type=int)
 @lightbulb.command('subtract', 'MAKES MATH FOR YOU FUCKING KUNT')
 @lightbulb.implements(lightbulb.SlashCommand)
@@ -110,7 +110,7 @@ async def add (ctx):
     print('MATH')
 #divide
 @bot.command
-@lightbulb.option('num1', 'the First number', type=int)
+@lightbulb.option('num1', 'the first number', type=int)
 @lightbulb.option('num2', 'the second number', type=int)
 @lightbulb.command('divide', 'MAKES MATH FOR YOU FUCKING KUNT')
 @lightbulb.implements(lightbulb.SlashCommand)
@@ -119,20 +119,20 @@ async def add (ctx):
     print('Subtracted',ctx.options.num1 ,"/", ctx.options.num2 )
 #multiply
 @bot.command
-@lightbulb.option('num1', 'the First number', type=int)
+@lightbulb.option('num1', 'the first number', type=int)
 @lightbulb.option('num2', 'the second number', type=int)
 @lightbulb.command('multiply', 'MAKES MATH FOR YOU FUCKING KUNT')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def add (ctx):
     await ctx.respond(ctx.options.num2 * ctx.options.num1)
-    print('Multipled',ctx.options.num1 ,"*", ctx.options.num2 )
+    print('Multiplied', ctx.options.num1, "*", ctx.options.num2)
 
 ############################################################################
 HELP_MESSAGE = """
 Commands Available:
 `add` - makes a math addition
 `search` - search the web for the context
-`joke` - does not make you laught
+`joke` - does not make you laugh
 """
 
 
