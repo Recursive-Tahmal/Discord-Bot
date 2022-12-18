@@ -95,8 +95,8 @@ async def ranwiki (ctx: lightbulb.Context):
 
 #MATH.... not drugs
 @bot.command
-@lightbulb.option('num1', 'the first number', type=int)
-@lightbulb.option('num2', 'the second number', type=int)
+@lightbulb.option('num1', 'the first number', type=float)
+@lightbulb.option('num2', 'the second number', type=float)
 @lightbulb.command('add', 'MAKES MATH FOR YOU FUCKING KUNT')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def add (ctx):
@@ -104,8 +104,8 @@ async def add (ctx):
 
 #subtract
 @bot.command
-@lightbulb.option('num1', 'the first number', type=int)
-@lightbulb.option('num2', 'the second number', type=int)
+@lightbulb.option('num1', 'the first number', type=float)
+@lightbulb.option('num2', 'the second number', type=float)
 @lightbulb.command('subtract', 'MAKES MATH FOR YOU FUCKING KUNT')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def add (ctx):
@@ -113,8 +113,8 @@ async def add (ctx):
 
 #divide
 @bot.command
-@lightbulb.option('num2', 'second number', type=int)
-@lightbulb.option('num1', 'first number', type=int)
+@lightbulb.option('num2', 'second number', type=float)
+@lightbulb.option('num1', 'first number', type=float)
 @lightbulb.command('divide', 'MAKES MATH FOR YOU FUCKING KUNT')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def add (ctx):
@@ -125,8 +125,8 @@ async def add (ctx):
 
 #multiply
 @bot.command
-@lightbulb.option('num1', 'the first number', type=int)
-@lightbulb.option('num2', 'the second number', type=int)
+@lightbulb.option('num1', 'the first number', type=float)
+@lightbulb.option('num2', 'the second number', type=float)
 @lightbulb.command('multiply', 'MAKES MATH FOR YOU FUCKING KUNT')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def add (ctx):
