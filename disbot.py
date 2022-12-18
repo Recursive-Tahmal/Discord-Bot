@@ -99,7 +99,24 @@ async def ranwiki (ctx: lightbulb.Context):
 async def add (ctx):
     await ctx.respond(ctx.options.num1 + ctx.options.num2)
     print('MATH')
-
+#subtract
+@bot.command
+@lightbulb.option('num1', 'the First number', type=int)
+@lightbulb.option('num2', 'the second number', type=int)
+@lightbulb.command('subtract', 'MAKES MATH FOR YOU FUCKING KUNT')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def add (ctx):
+    await ctx.respond(ctx.options.num1 - ctx.options.num2)
+    print('MATH')
+#divide
+@bot.command
+@lightbulb.option('num1', 'the First number', type=int)
+@lightbulb.option('num2', 'the second number', type=int)
+@lightbulb.command('divide', 'MAKES MATH FOR YOU FUCKING KUNT')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def add (ctx):
+    await ctx.respond(ctx.options.num2 / ctx.options.num1)
+    print('Subtracted',ctx.options.num1 , "/" , ctx.options.num2 )
 
 
 ############################################################################
