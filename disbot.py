@@ -23,7 +23,7 @@ bot = lightbulb.BotApp(
 
 @bot.listen(hikari.StartedEvent)
 async def bot_start(event):
-    print ('IM ALIVE')
+    print('IM ALIVE')
 
 @bot.command
 @lightbulb.command('help', 'Help for the needed')
@@ -41,7 +41,7 @@ async def japan (ctx: lightbulb.Context):
 
 #jokes NOT FUNNY!!!!
 @bot.command
-@lightbulb.command('joke', 'Random Programmer Joke of the mind')
+@lightbulb.command('nerd_joke', 'Random Programmer Joke of the mind')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def joke (ctx):
     await ctx.respond(pyjokes.get_joke())
@@ -66,29 +66,32 @@ async def subcommand(ctx):
 async def subcommand(ctx):
     await ctx.respond('i am a sub command2')
 
+
+
 #wikipedia1 search generic
 @bot.command
-@lightbulb.option('long', 'How long should the text be?', type=int)
 @lightbulb.option('text', 'the text to search')
-@lightbulb.command('search', 'Your search question')
+@lightbulb.command('search', 'Search for something in Wikipedia')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def wiki (ctx: lightbulb.Context):
-    resposta = ctx.options.text
-    pesado = ctx.options.long
-    await ctx.respond(wikipedia.summary(resposta, pesado))
+    try:
+        await ctx.respond(wikipedia.summary(ctx.options.text))
+    except:
+        await ctx.respond("Not found")
 
 
-
-#random WIKI NOT WORKING
+#random WIKI WORKS
 @bot.command
 @lightbulb.command('randomfact', 'Gets a random fact fro the web, not responsible from bad search!!!')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def ranwiki (ctx: lightbulb.Context):
     randomwiki = wikipedia.random(1)
     print(randomwiki)
-    resposta = wikipedia.summary(randomwiki,6)
+    resposta = wikipedia.summary(randomwiki, 6)
     print(resposta)
     await ctx.respond(randomwiki)
+    await ctx.respond(resposta)
+
 
 #MATH.... not drugs
 @bot.command
@@ -98,7 +101,7 @@ async def ranwiki (ctx: lightbulb.Context):
 @lightbulb.implements(lightbulb.SlashCommand)
 async def add (ctx):
     await ctx.respond(ctx.options.num1 + ctx.options.num2)
-    print('MATH')
+
 #subtract
 @bot.command
 @lightbulb.option('num1', 'the first number', type=int)
@@ -107,16 +110,19 @@ async def add (ctx):
 @lightbulb.implements(lightbulb.SlashCommand)
 async def add (ctx):
     await ctx.respond(ctx.options.num1 - ctx.options.num2)
-    print('MATH')
+
 #divide
 @bot.command
-@lightbulb.option('num1', 'the first number', type=int)
-@lightbulb.option('num2', 'the second number', type=int)
+@lightbulb.option('num2', 'second number', type=int)
+@lightbulb.option('num1', 'first number', type=int)
 @lightbulb.command('divide', 'MAKES MATH FOR YOU FUCKING KUNT')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def add (ctx):
-    await ctx.respond(ctx.options.num2 / ctx.options.num1)
-    print('Subtracted',ctx.options.num1 ,"/", ctx.options.num2 )
+    if(ctx.options.num2 == 0):
+        await ctx.respond("Error! cannot divide by zero")
+    else:
+        await ctx.respond(ctx.options.num1 / ctx.options.num2)
+
 #multiply
 @bot.command
 @lightbulb.option('num1', 'the first number', type=int)
@@ -125,7 +131,6 @@ async def add (ctx):
 @lightbulb.implements(lightbulb.SlashCommand)
 async def add (ctx):
     await ctx.respond(ctx.options.num2 * ctx.options.num1)
-    print('Multiplied', ctx.options.num1, "*", ctx.options.num2)
 
 ############################################################################
 HELP_MESSAGE = """
