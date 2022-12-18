@@ -7,7 +7,7 @@ import pyjokes
 import wikipedia
 import lightbulb
 import jaconv
-
+from biblehub import search as b_search
 
 # DEF CON 01
 
@@ -117,7 +117,15 @@ async def add (ctx):
 async def add (ctx):
     await ctx.respond(ctx.options.num2 / ctx.options.num1)
     print('Subtracted',ctx.options.num1 ,"/", ctx.options.num2 )
-
+#multiply
+@bot.command
+@lightbulb.option('num1', 'the First number', type=int)
+@lightbulb.option('num2', 'the second number', type=int)
+@lightbulb.command('multiply', 'MAKES MATH FOR YOU FUCKING KUNT')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def add (ctx):
+    await ctx.respond(ctx.options.num2 * ctx.options.num1)
+    print('Multipled',ctx.options.num1 ,"*", ctx.options.num2 )
 
 ############################################################################
 HELP_MESSAGE = """
