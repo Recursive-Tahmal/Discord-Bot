@@ -116,7 +116,7 @@ async def add (ctx):
 @lightbulb.implements(lightbulb.SlashCommand)
 async def add (ctx):
     await ctx.respond(ctx.options.num2 / ctx.options.num1)
-    print('Subtracted',ctx.options.num1 , "/" , ctx.options.num2 )
+    print('Subtracted',ctx.options.num1 ,"/", ctx.options.num2 )
 
 
 ############################################################################
