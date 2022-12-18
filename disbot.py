@@ -6,7 +6,7 @@ from pathlib import Path
 import pyjokes
 import wikipedia
 import lightbulb
-from googlesearch.googlesearch import GoogleSearch
+
 
 
 # DEF CON 01
@@ -40,7 +40,7 @@ async def help (ctx):
 
 #jokes NOT FUNNY!!!!
 @bot.command
-@lightbulb.command('joke', 'Random Joke of the mind')
+@lightbulb.command('joke', 'Random Programmer Joke of the mind')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def joke (ctx):
     await ctx.respond(pyjokes.get_joke())
@@ -75,6 +75,9 @@ async def wiki (ctx: lightbulb.Context):
     resposta = ctx.options.text
     pesado = ctx.options.long
     await ctx.respond(wikipedia.summary(resposta, pesado))
+
+
+
 #random WIKI NOT WORKING
 @bot.command
 @lightbulb.command('randomfact', 'Gets a random fact fro the web, not responsable from bad search!!!')
